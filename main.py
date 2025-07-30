@@ -11,7 +11,7 @@ client = genai.Client(api_key=api_key)
 def main():
     print("Hello from ai-agent!")
     if len(sys.argv) > 1:
-        response = client.models.generate_content(model='gemini-2.0-flash-001', contents=str(sys.argv[2]))
+        response = client.models.generate_content(model='gemini-2.0-flash-001', contents=str(sys.argv[1]))
         print(response.text)
         print("Prompt tokens: " + str(response.usage_metadata.prompt_token_count) + "\n" + "Response tokens: " + str(response.usage_metadata.candidates_token_count))
     else:
