@@ -1,6 +1,7 @@
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
 from functions.write_file import write_file
+from functions.run_python_file import run_python_file
 
 test_path = "calculator"
 
@@ -28,9 +29,19 @@ print("\n\nRunning tests...\n\n")
 for test in test_cases:
     print(test) """
 
-test_cases = [write_file(test_path, "lorem.txt", "wait, this isn't lorem ipsum"),
+""" test_cases = [write_file(test_path, "lorem.txt", "wait, this isn't lorem ipsum"),
         write_file(test_path, "pkg/morelorem.txt", "lorem ipsum dolor sit amet"),
         write_file(test_path, "/tmp/temp.txt", "this should not be allowed")]
+
+print("\n\nRunning tests...\n\n")
+for test in test_cases:
+    print(test) """
+
+test_cases = [run_python_file("calculator", "main.py"),
+            run_python_file("calculator", "main.py", ["3 + 5"]), 
+            run_python_file("calculator", "tests.py"),
+            run_python_file("calculator", "../main.py"), 
+            run_python_file("calculator", "nonexistent.py")]
 
 print("\n\nRunning tests...\n\n")
 for test in test_cases:
