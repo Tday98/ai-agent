@@ -5,17 +5,17 @@ from google.genai import types
 
 schema_write_file = types.FunctionDeclaration(
     name="write_file",
-    description="Lists files in the specified directory along with their sizes, constrained to the working directory.",
+    description="Writes content to a file within the working directory. Creates the file if it doesn't exist.",
     parameters=types.Schema(
         type=types.Type.OBJECT,
         properties={
             "file_path": types.Schema(
                 type=types.Type.STRING,
-                description="The file path to a file, relative to the working directory. If not provided, lists files in the working directory itself.",
+                description="Path to the file to write, relative to the working directory.",
             ),
             "content": types.Schema(
                 type=types.Type.STRING,
-                description="The content to be written into the file that is applied via the file_path."
+                description="Content to write to the file",
             ),
         },
         required=["file_path", "content"],
