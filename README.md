@@ -1,0 +1,1 @@
+This repository contains an AI agent that uses the Gemini 2.0 API to automatically identify and fix simple code bugs. The agent is designed to analyze code, detect common errors, and suggest corrections. It can be used as a tool to improve code quality and reduce debugging time.
