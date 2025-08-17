@@ -1,5 +1,26 @@
 import os
-import sys
+
+from google import genai
+from google.genai import types
+
+schema_write_file = types.FunctionDeclaration(
+    name="write_file",
+    description="Lists files in the specified directory along with their sizes, constrained to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The file path to a file, relative to the working directory. If not provided, lists files in the working directory itself.",
+            ),
+            "content": types.Schema(
+                type=types.Type.STRING,
+                description="The content to be written into the file that is applied via the file_path."
+            ),
+        },
+        required=["file_path", "content"],
+    ),
+)
 
 def write_file(working_directory, file_path, content):
     try:

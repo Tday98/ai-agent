@@ -10,6 +10,23 @@ sys.path.append(parent_dir_path)
 
     # Now, you can import config from the parent directory
 import config
+from google import genai
+from google.genai import types
+
+schema_get_file_content = types.FunctionDeclaration(
+    name="get_file_content",
+    description="Gets file content in the specified directory and returns its content, constrained to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "directory": types.Schema(
+                type=types.Type.STRING,
+                description="The directory to list files from, relative to the working directory. If not provided, lists files in the working directory itself.",
+            ),
+        },
+        required= ["directory"],
+    ),
+)
 
 def get_file_content(working_directory, file_path):
 

@@ -1,6 +1,29 @@
 import os
 import subprocess
 
+from google import genai
+from google.genai import types
+
+schema_run_python_file = types.FunctionDeclaration(
+    name="run_python_file",
+    description="Executes Python files in the specified directory, constrained to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The file_path to a python file from, relative to the working directory. If not provided, raise error.",
+            ),
+            "args": types.Schema(
+                type=types.Type.ARRAY,
+                description="The args is a list object that holds the arguments that will be passed to the function.",
+                items=types.Schema(type=types.Type.STRING),
+            ),
+        },
+        required=["file_path"],
+    ),
+)
+
 def run_python_file(working_directory, file_path, args=[]):
     try:
         path = os.path.join(working_directory, file_path)
